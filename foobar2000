@@ -1,0 +1,13 @@
+#!/bin/sh
+
+foobar='c:\\\Program Files\\foobar2000\\foobar2000.exe'
+
+
+if [ "$1" != "" ]; then
+filename=$1
+echo $filename | grep "^/" >/dev/null || filename="$PWD/$filename"
+filename=`echo z:$filename | sed 's/\\//\\\\/g'`
+#echo $filename
+fi
+wine "$foobar" "$filename" &
+
